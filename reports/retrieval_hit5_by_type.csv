@@ -1,0 +1,4 @@
+type,bm25,char_tfidf,hybrid
+factual,0.938,0.906,0.906
+multi_page,1.0,1.0,1.0
+paraphrase,1.0,1.0,1.0
