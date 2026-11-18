@@ -1,5 +1,7 @@
 # Nutrition guidelines assistant (RAG with citations)
 
+[![tests](https://github.com/jordanT667/nutrition-rag/actions/workflows/tests.yml/badge.svg)](https://github.com/jordanT667/nutrition-rag/actions/workflows/tests.yml) ![Python 3.13](https://img.shields.io/badge/python-3.13-3776AB?logo=python&logoColor=white)
+
 A question-answering assistant on the **official French dietary guidelines for adults** (Santé publique France, 2019). It retrieves the relevant passages, answers in French with Claude, and **cites the page** each statement comes from. When the guidelines do not cover a question, it is expected to say so rather than invent a figure.
 
 The project is built around an evaluation: does retrieval actually help, now that a 62-page document fits entirely in a model's context window?
