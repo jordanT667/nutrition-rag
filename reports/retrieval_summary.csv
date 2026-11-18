@@ -1,0 +1,4 @@
+method,hit@1,hit@3,hit@5,hit@8,reciprocal_rank
+bm25,0.7,0.9,0.95,0.95,0.811
+char_tfidf,0.6,0.875,0.925,0.925,0.739
+hybrid,0.675,0.9,0.925,0.95,0.792
