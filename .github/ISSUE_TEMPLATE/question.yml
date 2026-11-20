@@ -1,0 +1,9 @@
+name: Question or idea
+description: A question about the method or the results, or a suggestion
+body:
+  - type: textarea
+    id: text
+    attributes:
+      label: Your question or idea
+    validations:
+      required: true
