@@ -113,3 +113,19 @@ def test_search_returns_k_distinct_passages(method):
 def test_unknown_method_is_rejected():
     with pytest.raises(ValueError):
         Retriever(PASSAGES).search("poisson", method="dense")
+
+
+def test_load_env_reads_values_without_overriding(tmp_path, monkeypatch):
+    env = tmp_path / ".env"
+    env.write_text('# comment\nNUTRIRAG_A="quoted"\nNUTRIRAG_B=plain\nnot a pair\n', encoding="utf-8")
+    monkeypatch.setenv("NUTRIRAG_A", "")
+    monkeypatch.delenv("NUTRIRAG_A")  # removed for the test, restored afterwards
+    monkeypatch.setenv("NUTRIRAG_B", "already set")
+    generate.load_env(env)
+    assert generate.os.environ["NUTRIRAG_A"] == "quoted"
+    assert generate.os.environ["NUTRIRAG_B"] == "already set"
+
+
+def test_load_env_without_file_is_a_no_op(tmp_path):
+    generate.load_env(tmp_path / "missing.env")
+
