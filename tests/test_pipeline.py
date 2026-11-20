@@ -100,3 +100,16 @@ def test_closed_mode_sends_no_source(assistant):
 def test_cost_uses_cache_prices():
     row = {"input_tokens": 1_000_000, "output_tokens": 0, "cache_read_tokens": 1_000_000, "cache_write_tokens": 0}
     assert cost(row) == pytest.approx(4.20)
+
+
+@pytest.mark.parametrize("method", ["bm25", "char_tfidf", "hybrid"])
+def test_search_returns_k_distinct_passages(method):
+    r = Retriever(PASSAGES)
+    hits = r.search("poisson et eau", k=2, method=method)
+    assert len(hits) == 2 and len({h["id"] for h in hits}) == 2
+    assert len(r.search("poisson", k=10, method=method)) == len(PASSAGES)
+
+
+def test_unknown_method_is_rejected():
+    with pytest.raises(ValueError):
+        Retriever(PASSAGES).search("poisson", method="dense")
