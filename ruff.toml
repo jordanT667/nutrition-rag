@@ -1,0 +1,10 @@
+line-length = 140
+target-version = "py313"
+
+[lint]
+# pycodestyle, pyflakes, import order, bugbear, pyupgrade
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[lint.per-file-ignores]
+# The local .env is loaded before the retriever is imported, on purpose.
+"src/nutrirag/generate.py" = ["E402"]
