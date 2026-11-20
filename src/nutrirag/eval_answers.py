@@ -135,12 +135,12 @@ def grade(mode: str, questions: list[dict], answers: list[dict], client, page_te
     if path.exists():
         done = {r["id"]: r for r in map(json.loads, path.read_text(encoding="utf-8").splitlines())}
     with path.open("a", encoding="utf-8") as f:
-        for q, a in zip(questions, answers):
+        for q, a in zip(questions, answers, strict=True):
             if q["id"] not in done:
                 done[q["id"]] = {"id": q["id"], **judge(client, q, a["text"], page_text)}
                 f.write(json.dumps(done[q["id"]], ensure_ascii=False) + "\n")
     rows = []
-    for q, a in zip(questions, answers):
+    for q, a in zip(questions, answers, strict=True):
         g = done[q["id"]]
         gold = set(q["pages"])
         rows.append({
