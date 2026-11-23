@@ -1,4 +1,4 @@
-anthropic==2.10.0
+anthropic==2.11.0
 pymupdf==1.28.2
 rank-bm25==0.2.2
 scikit-learn==1.7.2
